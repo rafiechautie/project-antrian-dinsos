@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('time_appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lengkap');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->boolean('level')->default(false);
-            $table->string('foto_profil')->nullable();
-            $table->rememberToken();
+            $table->dateTime('waktu');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('time_appointments');
     }
 };

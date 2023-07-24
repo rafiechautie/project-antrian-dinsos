@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('divisions', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lengkap');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->boolean('level')->default(false);
-            $table->string('foto_profil')->nullable();
-            $table->rememberToken();
+            $table->string('nama_bidang');
+            $table->integer('no_ruang');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('divisions');
     }
 };
