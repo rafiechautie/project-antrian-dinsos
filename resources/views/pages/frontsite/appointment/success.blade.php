@@ -18,13 +18,24 @@
             <p class="text-[#AFAEC3] mt-4">Terima kasih telah mengisi form. Segera cetak bukti janji temu dan bawa ke dinkes tujuanmu.</h3>
                 <br /><span class="title">Klik dibawah untuk mencetak</span></p>
 
-                <button class="btn btn-primary">
+                {{-- <button onclick="downloadAndRedirect()" class="btn btn-primary">
                     Cetak Bukti
-                </button>
+                </button> --}}
+
+                <a  href="/cetak-bukti" download="bukti-janji-temu.pdf" onclick="downloadAndRedirect()">
+                    <button class="btn btn-primary">Download PDF</button>
+                </a>
 
         </div>
     </div>
 </div>
+
+<script>
+    function downloadAndRedirect() {
+            // Lakukan redirect ke halaman home setelah selesai mengunduh
+            window.location.href = '/';
+        }
+</script>
 <!-- End Content -->
 @endsection
 

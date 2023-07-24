@@ -9,6 +9,10 @@ use App\Models\TimeAppointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
+
 class AppointmentController extends Controller
 {
     public function index()
@@ -65,6 +69,11 @@ class AppointmentController extends Controller
         // dd($request->nama_tamu);
         // dd($id);
 
+        $division = Division::find($id);
+
+        $time = TimeAppointment::find($request->id_waktu);
+        // dd($time->waktu_mulai);
+
         $validatedData = $request->validate([
             'nama_tamu'  => 'required|max:255',
             'no_hp_tamu'  => 'required|max:255',
@@ -88,8 +97,101 @@ class AppointmentController extends Controller
 
         Appointment::create($validatedData);
 
+        $nama_lengkap = $request->nama_tamu;
+        $tujuan_bidang = $division->nama_bidang;
+        $asal = $request->asal;
+        $detail_asal = $request->detail_asal;
+        $keperluan = $request->keperluan;
+        $waktu_mulai = $time->waktu_mulai;
+        $waktu_akhir = $time->waktu_akhir;
+        $tanggal = $request->tanggal;
+
+        $request->session()->put('nama_lengkap', $nama_lengkap);
+        $request->session()->put('tujuan_bidang', $tujuan_bidang);
+        $request->session()->put('asal', $asal);
+        $request->session()->put('detail_asal', $detail_asal);
+        $request->session()->put('keperluan', $keperluan);
+        $request->session()->put('waktu_mulai', $waktu_mulai);
+        $request->session()->put('waktu_akhir', $waktu_akhir);
+        $request->session()->put('tanggal', $tanggal);
         // $request->user()->pendidikanFormal()->create($validatedData);
 
         return redirect('/success');
+    }
+
+    public function printPdf(Request $request)
+    {
+
+
+
+        $data = [
+            "nama_lengkap" => $request->session()->get('nama_lengkap'),
+            "tujuan_bidang" => $request->session()->get('tujuan_bidang'),
+            "asal" => $request->session()->get('asal'),
+            "detail_asal" => $request->session()->get('detail_asal'),
+            "keperluan" => $request->session()->get('keperluan'),
+            "waktu_mulai" => $request->session()->get('waktu_mulai'),
+            "waktu_akhir" => $request->session()->get('waktu_akhir'),
+            "tanggal" => $request->session()->get('tanggal'),
+        ];
+
+
+
+        // $data = [
+        //     'title' => 'Welcome to Nicesnippets.com',
+        //     'date' => date('m/d/Y')
+        // ];
+
+
+        $pdf = App::make('dompdf.wrapper');
+
+        $html = '
+            <div style="text-align: center;">
+                <img src="' . public_path('/assets/images/sumsel.png') . '" style="width: 80px; display: inline-block; position: absolute; top: 0px; left: 250px;">
+                <img src="' . public_path('/assets/images/logodinkes.png') . '" style="width: 120px; display: inline-block; position: absolute; top: 15px; left: 350px;">
+                <h2 style="margin-top: 120px;">SISTEM ANTRIAN TAMU ONLINE DINAS KESEHATAN PROVINSI SUMATERA SELATAN</h2>
+                <hr>
+                <h5>Berhasil Booking</h5>
+            </div>';
+
+        $html .= '
+            <ul>
+                <li>Nama Lengkap : ' . session('nama_lengkap') . '</li>
+                <li>Tujuan Bidang : ' . session('tujuan_bidang') . '</li>
+                <li>Asal : ' . session('asal') . '</li>
+                <li>Detail Asal : ' . session('detail_asal') . '</li>
+                <li>Keperluan : ' . session('keperluan') . '</li>
+                <li style="font-style: bold; ">Tanggal Bertemu: ' . session('tanggal') . '</li>
+                <li style="font-style: bold; ">Waktu Bidang : ' . session('waktu_mulai') . '-' .  session('waktu_akhir') . '</li>
+            </ul>
+            ';
+
+
+        $pdf->loadHTML($html);
+        // return $pdf->stream();
+
+
+
+        // Render PDF
+        $pdf->render();
+
+        // Dapatkan data PDF dalam bentuk string
+        $pdfData = $pdf->output();
+
+        // Nama file yang akan diunduh
+        $filename = 'bukti-janji-temu.pdf';
+
+        // Response dengan header Content-Disposition dan Content-Type yang benar
+        return new Response(
+            $pdfData,
+            200,
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="' . $filename . '"'
+            ]
+        );
+        // return redirect('/');
+
+        // return view('index', compact('users'));
     }
 }

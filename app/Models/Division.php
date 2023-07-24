@@ -16,4 +16,10 @@ class Division extends Model
         //satu division bisa memiliki banyak waktu
         return $this->hasMany(TimeAppointment::class);
     }
+
+    //satu division bisa punya banyak appointment
+    public function appointment()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }
