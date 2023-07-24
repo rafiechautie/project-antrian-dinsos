@@ -23,43 +23,63 @@
   </div>
 
   <div class="section trending">
+      <div class="form first">
         <div class="container">
-        <form action="#">
-            <div class="form first">
+        <form action="/form-tamu/{{ $division->id }}" method="POST" enctype="multipart/form-data">
+          @csrf
+              <span class="title"><h3>Personal Details</h3></span>
+              <p>Silakan pilih jadwal yang tersedia untuk membuat pertemuan</p>
+              <span class="title">Harap mengisi form di bawah dengan lengkap</span>
                 <div class="details personal">
-                    <span class="title"><h3>Personal Details</h3></span>
-                    <p>Silakan pilih jadwal yang tersedia untuk membuat pertemuan</p>
-                    <span class="title">Harap mengisi form di bawah dengan lengkap</span>
-
                     <div class="fields">
                         <div class="input-field">
-                            <label>Pilih Tanggal</label>
-                            <input type="date" placeholder="Enter your name" required>
+                            <label for="tanggal">Pilih Tanggal</label>
+                            <input class="form-control @error('tanggal') is-invalid @enderror" type="date" id="tanggal" name="tanggal" value="{{ old('tanggal') }}" autofocus>
+                            <div class="invalid-feedback"> test</div>
+                            @error('tanggal')
+                                <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="input-field">
-                            <label>Nama Lengkap</label>
-                            <input type="text" placeholder="Enter birth date" required>
+                            <label for="nama_tamu">Nama Lengkap</label>
+                            <input class="form-control @error('nama_tamu') is-invalid @enderror" type="text" id="nama_tamu" name="nama_tamu" value="{{ old('nama_tamu') }}" placeholder="Enter birth date" >
+                            @error('nama_tamu')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="input-field">
-                            <label>Plat mobil (jika menggunakan mobil)</label>
-                            <input type="text" placeholder="Plat mobil" required>
+                            <label for="plat_mobil">Plat mobil (jika menggunakan mobil)</label>
+                            <input class="form-control @error('plat_mobil') is-invalid @enderror" type="text" id="plat_mobil" name="plat_mobil" value="{{ old('plat_mobil') }}" placeholder="Plat mobil" >
+                            @error('plat_mobil')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="input-field">
-                            <label>Pilih Waktu</label>
-                            <input type="time" placeholder="Enter mobile number" required>
+                            <label for="id_waktu">Pilih Waktu</label>
+                            <select class="form-select" name="id_waktu" id="id_waktu">
+                              @foreach ($available_times as $available_time)
+                              <option value="{{ $available_time->id }}" {{ old('category_id') == $available_time->id ? ' selected' : '' }}>{{ $available_time->waktu_mulai }} - {{ $available_time->waktu_akhir }}</option>
+                              @endforeach
+                            </select>
                         </div>
 
                         <div class="input-field">
-                            <label>No. Hp</label>
-                            <input type="number" placeholder="Enter your ccupation" required>
+                            <label for="no_hp_tamu">No. Hp</label>
+                            <input type="number" class="form-control @error('no_hp_tamu') is-invalid @enderror" id="no_hp_tamu" name="no_hp_tamu" value="{{ old('no_hp_tamu') }}" placeholder="Enter your phone" >
+                            @error('no_hp_tamu')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="input-field">
-                            <label>No. Surat Tugas</label>
-                            <input type="number" placeholder="Enter your ccupation" required>
+                            <label for="no_surat_tugas">No. Surat Tugas</label>
+                            <input type="number" class="form-control @error('no_surat_tugas') is-invalid @enderror" id="no_surat_tugas" name="no_surat_tugas" value="{{ old('no_surat_tugas') }}" placeholder="Enter your ccupation">
+                            @error('no_surat_tugas')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -67,45 +87,68 @@
                 <div class="details ID">
                     <div class="fields">
                         <div class="input-field">
-                            <label>Keperluan</label>
-                            <input type="text" placeholder="Enter ID type" required>
+                            <label for="keperluan">Keperluan</label>
+                            <input type="text" class="form-control @error('keperluan') is-invalid @enderror" id="keperluan" name="keperluan" value="{{ old('keperluan') }}" placeholder="What do you want?" >
+                            @error('keperluan')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="input-field">
-                            <label>Asal</label>
-                            <select required>
+                            <label for="asal">Asal</label>
+                            <select class="form-select" id="asal" name="asal" >
                                 <option disabled selected>Select Asal</option>
-                                <option>Kementrian</option>
-                                <option>Dinas Provinsi</option>
-                                <option>Others</option>
+                                <option value="kementrian" {{ old('asal') == "kementrian" ? ' selected' : '' }}>Kementrian</option>
+                                <option value="dinas provinsi" {{ old('asal') == "dinas provinsi" ? ' selected' : '' }}>Dinas Provinsi</option>
+                                <option value="dinas kabupaten kota" {{ old('asal') == "dinas kabupaten kota" ? ' selected' : '' }}>Dinas Kabupaten Kota</option>
+                                <option value="rumah sakit" {{ old('asal') == "rumah sakit" ? ' selected' : '' }}>Rumah Sakit</option>
+                                <option value="klinik" {{ old('asal') == "klinik" ? ' selected' : '' }}>Klinik</option>
+                                <option value="puskesmas" {{ old('asal') == "puskesmas" ? ' selected' : '' }}>Puskesmas</option>
+                                <option value="laboratorium" {{ old('asal') == "laboratorium" ? ' selected' : '' }}>Laboratorium</option>
+                                <option value="penunjang kesehatan" {{ old('asal') == "penunjang kesehatan" ? ' selected' : '' }}>Penunjang Kesehatan</option>
+                                <option value="instansi pemerintah lintas sektor" {{ old('asal') == "instansi pemerintah lintas sektor" ? ' selected' : '' }}>Instansi Pemerintah Lintas Sektor</option>
+                                <option value="instansi BUMN" {{ old('asal') == "instansi BUMN" ? ' selected' : '' }}>Instansi BUMN</option>
+                                <option value="instansi swasta" {{ old('asal') == "instansi swasta" ? ' selected' : '' }}>Instansi Swasta</option>
+                                <option value="warga masyarakat" {{ old('asal') == "warga masyarakat" ? ' selected' : '' }}>Warga Masyarakat</option>
+                                <option value="lain-lain" {{ old('asal') == "lain-lain" ? ' selected' : '' }}>Lain-lain</option>
                             </select>
 
                         </div>
 
                         <div class="input-field">
-                            <label>Upload File Surat Tugas</label>
-                            <input type="file" id="fileInput" name="fileInput">
+                            <label for="file_surat_tugas">Upload File Surat Tugas</label>
+                            <div id="pdf-preview"></div>
+                            <input type="file" class="form-control @error('file_surat_tugas') is-invalid @enderror" id="file_surat_tugas" name="file_surat_tugas" value="{{ old('file_surat_tugas') }}" onchange="previewPDF(this)">
+                            @error('file_surat_tugas')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="input-field">
-                            <label>Jumlah Orang</label>
-                            <input type="number" placeholder="Enter issued state" required>
+                            <label for="jumlah_tamu">Jumlah Orang</label>
+                            <input type="number" class="form-control @error('jumlah_tamu') is-invalid @enderror" id="jumlah_tamu" name="jumlah_tamu" value="{{ old('jumlah_tamu') }}" placeholder="Enter issued state" >
+                            @error('jumlah_tamu')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="input-field">
-                            <label>Detail Asal</label>
-                            <input type="text" placeholder="Enter your issued date" required>
+                            <label for="detail_asal">Detail Asal</label>
+                            <input type="text" class="form-control @error('detail_asal') is-invalid @enderror" id="detail_asal" name="detail_asal" placeholder="Enter your issued date" value="{{ old('detail_asal') }}" >
+                            @error('detail_asal')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
-                    <button class="nextBtn">
+                    <button class="nextBtn" type="submit">
                         <span class="btnText">Kirim</span>
                         <i class="uil uil-navigator"></i>
                     </button>
                 </div> 
             </div>
 
-            <div class="form second">
+            {{-- <div class="form second">
                 <div class="details address">
                     <h3>Terima kasih telah mengisi form. Segera cetak bukti janji temu dan bawa ke dinkes tujuanmu.</h3>
                     <span class="title">Klik dibawah untuk mencetak</span>
@@ -115,9 +158,9 @@
                             <i class="uil uil-navigator"></i>
                         </button>
                     </div>
-                </div> 
-            </div>
-        </form>
+                </div>  --}}
+            </form>
+        </div>
         </div>
           </div>
         </div>
@@ -126,7 +169,24 @@
   </div>
 </div>
 
-
+<script>
+    function previewPDF(input) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        
+        reader.onloadend = function () {
+            const pdfPreview = document.getElementById('pdf-preview');
+            pdfPreview.innerHTML = `<iframe src="${reader.result}" width="100%" height="500px"></iframe>`;
+        }
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            const pdfPreview = document.getElementById('pdf-preview');
+            pdfPreview.innerHTML = '';
+        }
+    }
+  </script>
 
 
 @push('after-script')

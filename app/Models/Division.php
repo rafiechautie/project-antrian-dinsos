@@ -10,4 +10,10 @@ class Division extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function time()
+    {
+        //satu division bisa memiliki banyak waktu
+        return $this->hasMany(TimeAppointment::class);
+    }
 }

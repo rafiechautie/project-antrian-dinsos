@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('division_id');
             $table->string('nama_tamu');
             $table->string('no_hp_tamu');
             $table->integer('jumlah_tamu');
-            $table->foreignId("bidang_id");
+            $table->string('detail_asal');
             $table->string('asal');
             $table->text('keperluan');
             $table->date('tanggal');

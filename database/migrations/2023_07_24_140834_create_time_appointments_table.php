@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('time_appointments', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('waktu');
+            $table->foreignId('division_id');
+            $table->string('waktu_mulai');
+            $table->string('waktu_akhir');
             $table->timestamps();
         });
     }

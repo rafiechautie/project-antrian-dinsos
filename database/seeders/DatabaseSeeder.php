@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DivisionsSeeder::class,
             UserSeeder::class,
+            TimeSeeder::class,
         ]);
     }
 }

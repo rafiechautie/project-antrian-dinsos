@@ -25,6 +25,10 @@ Route::group(['middleware' => 'guest'], function () {
 
     Route::get('/form-tamu/{id}', [AppointmentController::class, 'create']);
 
+    Route::get('/success', function () {
+        return view('pages.frontsite.appointment.success');
+    });
+
     Route::post('/form-tamu/{id}', [AppointmentController::class, 'store']);
 });
 
