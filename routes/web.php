@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.frontsite.landing-page.index');
+});
+
+Route::get('/form-tamu', function () {
+    return view('form-tamu.index');
+});
+
+Route::prefix('/admin')->group(function () {
+
+    Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+
+    Route::get('/index', function () {
+        return view('admin.index');
+    });
 });
