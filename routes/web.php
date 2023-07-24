@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\frontsite\AppointmentController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,15 +19,20 @@ Route::get('/', function () {
     return view('pages.frontsite.landing-page.index');
 });
 
-Route::get('/form-tamu', function () {
-    return view('form-tamu.index');
-});
 
-Route::prefix('/admin')->group(function () {
 
-    Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/form-tamu', [AppointmentController::class, 'index'])->middleware('guest');
+// Route::get('/form-tamu/')
 
-    Route::get('/index', function () {
-        return view('admin.index');
-    });
-});
+// Route::get('/form-tamu', function () {
+//     return view('form-tamu.index');
+// });
+
+// Route::prefix('/admin')->group(function () {
+
+//     Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+
+//     Route::get('/index', function () {
+//         return view('admin.index');
+//     });
+// });

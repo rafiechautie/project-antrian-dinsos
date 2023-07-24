@@ -13,7 +13,7 @@
           <ul class="nav">
             <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
             <li class="scroll-to-section"><a href="#about">About</a></li>
-            <li class="scroll-to-section"><a href="form_tamu.html">Form Tamu</a></li>
+            <li class="scroll-to-section"><a href="/janji-temu">Form Tamu</a></li>
             <li class="scroll-to-section"><a href="#contact">Contact</a></li> 
             <li class="scroll-to-section"><div class="border-first-button"><a href="admin/login.html">Login</a></div></li> 
           </ul>        

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('divisions', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_bidang');
+            $table->string('nama_bidang')->unique();
             $table->integer('no_ruang');
             $table->timestamps();
         });
