@@ -15,13 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.frontsite.landing-page.index');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', function () {
+        return view('pages.frontsite.landing-page.index');
+    });
+
+    Route::get('/form-tamu', [AppointmentController::class, 'index']);
+
+
+    Route::get('/form-tamu/{id}', [AppointmentController::class, 'create']);
+
+    Route::post('/form-tamu/{id}', [AppointmentController::class, 'store']);
 });
 
 
-
-Route::get('/form-tamu', [AppointmentController::class, 'index'])->middleware('guest');
 // Route::get('/form-tamu/')
 
 // Route::get('/form-tamu', function () {

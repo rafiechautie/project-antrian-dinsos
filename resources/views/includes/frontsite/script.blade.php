@@ -3,4 +3,4 @@
 <script src="{{ asset('/assets/js/owl-carousel.js') }}"></script>
 <script src="{{ asset('/assets/js/animation.js') }}"></script>
 <script src="{{ asset('/assets/js/imagesloaded.js') }}"></script>
-<script src="{{ asset('/assets/js/custom.js') }}"></script>
+{{-- <script src="{{ asset('/assets/js/custom.js') }}"></script> --}}

@@ -32,12 +32,12 @@
         <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
             <div class="item">
                 <div class="thumb">
-                  <a href="form.html"><img src="{{ $imageData }}" alt="Gambar Bidang"></a>
+                  <a href="/form-tamu/{{ $division->id }}"><img src="{{ $imageData }}" alt="Gambar Bidang"></a>
                 </div>
                 <div class="down-content">
                   <span class="category">Provinsi Sumsel</span>
                   <h4>{{ $division->nama_bidang }}</h4>
-                  <a href="form.html"><i class="fa fa-hand"></i></a>
+                  <a href="/form-tamu/{{ $division->id }}"><i class="fa fa-hand"></i></a>
                 </div>
               </div>
             </div>
@@ -58,13 +58,7 @@
     </div>
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2023 Dinkes Provinsi Sumatera Selatan., IMH. All rights reserved. &nbsp;&nbsp;</p>
-      </div>
-    </div>
-  </footer>
+ 
     
 
 @push('after-script')

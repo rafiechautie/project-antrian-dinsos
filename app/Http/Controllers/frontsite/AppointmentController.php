@@ -44,4 +44,13 @@ class AppointmentController extends Controller
             'imageData' => $relativePath,
         ]);
     }
+
+    public function create()
+    {
+        return view('pages.frontsite.appointment.store');
+    }
+
+    public function store()
+    {
+    }
 }
