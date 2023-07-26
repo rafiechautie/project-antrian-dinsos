@@ -31,20 +31,15 @@ Route::group(['middleware' => 'guest'], function () {
     });
 
     Route::get('/cetak-bukti', [AppointmentController::class, 'printPDF']);
+
+
+    Route::get('/login', [LoginController::class, 'index']);
+
+    Route::post('/login', [LoginController::class, 'authenticate']);
 });
 
-
-// Route::get('/form-tamu/')
-
-// Route::get('/form-tamu', function () {
-//     return view('form-tamu.index');
-// });
-
-// Route::prefix('/admin')->group(function () {
-
-//     Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-
-//     Route::get('/index', function () {
-//         return view('admin.index');
-//     });
-// });
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', function () {
+        return view('pages.backsite.dashboard.index');
+    });
+});

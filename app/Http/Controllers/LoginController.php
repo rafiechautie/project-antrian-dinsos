@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
+            'username' => 'required',
             'password' => 'required',
         ]);
 
@@ -39,6 +39,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         //mengarahkan ke halaman home
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 }
