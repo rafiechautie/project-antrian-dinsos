@@ -24,7 +24,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             //mengarahkan ke halaman dashboard
             //mengarahkan ke sebuah halaman menggunakan itended karena
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->with('loginError', 'Login Failed!');

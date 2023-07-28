@@ -1,9 +1,7 @@
-<!-- Menu -->
-
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
       <a href="index.html" class="app-brand-link">
-      <img src="../assets2/img/icons/logo.png" alt class="w-px-40 h-auto rounded-circle" />
+      <img src="{{ asset('assets2/img/icons/logo.png') }}" alt class="w-px-40 h-auto rounded-circle" />
         <span class="app-brand-logo demo">
             <defs>
               <path
@@ -72,31 +70,38 @@
       </li>
 
       <!-- Components -->
-      <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Pages</span></li>
       <!-- Data Tamu -->
        <li class="menu-item">
-        <a href="cards-basic.html" class="menu-link">
+        <a href="/admin/appointment" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Data Tamu</div>
         </a>
       </li>
       <!-- Data Pegawai -->
       <li class="menu-item">
-        <a href="data_petugas.html" class="menu-link">
+        <a href="/pegawai" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Data Pegawai</div>
         </a>
       </li>
       <!-- Data User -->
       <li class="menu-item">
-        <a href="data_user.html" class="menu-link">
+        <a href="/bidang" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Data Bidang</div>
         </a>
       </li>
+      {{-- data bidang tiap karyawan --}}
+      {{-- <li class="menu-item">
+        <a href="data_user.html" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-collection"></i>
+          <div data-i18n="Basic">Data Bidang tiap karyawan</div>
+        </a>
+      </li> --}}
       <!-- Laporan -->
       <li class="menu-item">
-        <a href="laporan.html" class="menu-link">
+        <a href="/laporan" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Laporan</div>
         </a>
@@ -105,7 +110,7 @@
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Pages</span>
       </li>
-      <li class="menu-item">
+      <li class="/admin/setting">
        <a href="settings.html" class="menu-link">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
           <div data-i18n="Account Settings">Account Settings</div>
@@ -118,7 +123,7 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="login.html" class="menu-link">
+            <a href="/admin/logout" class="menu-link">
               <div data-i18n="Basic">Log Out</div>
             </a>
           </li>
@@ -126,4 +131,3 @@
       </li>
 
   </aside>
-  <!-- / Menu -->

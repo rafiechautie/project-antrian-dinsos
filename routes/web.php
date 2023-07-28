@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backsite\PegawaiController;
 use App\Http\Controllers\frontsite\AppointmentController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,10 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+
     Route::get('/dashboard', function () {
         return view('pages.backsite.dashboard.index');
     });
+
+    Route::resource('/pegawai', PegawaiController::class);
 });
