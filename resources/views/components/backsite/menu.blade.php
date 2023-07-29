@@ -93,12 +93,12 @@
         </a>
       </li>
       {{-- data bidang tiap karyawan --}}
-      {{-- <li class="menu-item">
+      <li class="menu-item">
         <a href="data_user.html" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Data Bidang tiap karyawan</div>
         </a>
-      </li> --}}
+      </li>
       <!-- Laporan -->
       <li class="menu-item">
         <a href="/laporan" class="menu-link">

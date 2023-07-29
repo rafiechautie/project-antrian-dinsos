@@ -34,7 +34,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/cetak-bukti', [AppointmentController::class, 'printPDF']);
 
 
-    Route::get('/login', [LoginController::class, 'index']);
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
 
     Route::post('/login', [LoginController::class, 'authenticate']);
 });
@@ -45,5 +45,5 @@ Route::group(['middleware' => 'auth'], function () {
         return view('pages.backsite.dashboard.index');
     });
 
-    Route::resource('/pegawai', PegawaiController::class);
+    Route::resource('/pegawai', PegawaiController::class)->except('show');
 });

@@ -17,16 +17,19 @@
               <div class="panel-heading">
                   <h3 class="panel-title">Data Pegawai</h3>
               </div>
+
+
               <div class="panel-body">
 
 
-                  <div class="pull-right">
-                      <a href="/dashboard/pegawai/create" class="btn btn-primary"><i class="fa fa-plus"></i>Tambah Pegawai</a>
+                  <div class="pull-right mb-4">
+                      <a href="/pegawai/create" class="btn btn-primary"><i class="fa fa-plus"></i>Tambah Pegawai</a>
                   </div>
-
-                  <br>
-                  <br>
-                  <br>
+                  @if (session()->has('success'))
+                  <div class="alert alert-success col-lg-12" role="alert">
+                    {{ session('success') }}
+                  </div>
+                  @endif
                   <table id="table" class="table table-bordered table-striped table-hover table-datatable">
                       <thead>
                           <tr>
@@ -38,25 +41,44 @@
                           </tr>
                       </thead>
                       <tbody>
-                       @foreach ($list_pegawai as $pegawai)
+                          @foreach ($list_pegawai as $pegawai)
+                        </tr>
                             <td>{{ $loop->iteration }}</td>
-                            @if ($pegawai->foto_profil)
-                            <img
-                                src="{{ asset('storage/' . $user->image) }}"
+                            <td>
+                                @if ($pegawai->foto_profil)
+                                <img
+                                    src="{{ asset('storage/' . $pegawai->foto_profil) }}"
+                                    alt="user-avatar"
+                                    class="d-block rounded"
+                                    width="90"
+                                    height="120"
+                                    id="image-preview"
+                                    name="image-preview"
+                              />
+                                @else
+                                <img
+                                src="../assets2/img/avatars/1.png"
                                 alt="user-avatar"
                                 class="d-block rounded"
-                                width="90"
-                                height="120"
-                                id="image-preview"
-                                name="image-preview"
-                          />
-                            @else
-
-                            @endif
-                            <td>{{ $pegawai->iteration }}</td>
-                            <td>{{ $pegawai->iteration }}</td>
-                            <td>{{ $pegawai->iteration }}</td>
-                            <td>{{ $pegawai->iteration }}</td>
+                                height="100"
+                                width="100"
+                                id="uploadedAvatar"
+                              />
+                                @endif
+                            </td>
+                            <td>{{ $pegawai->nama_lengkap }}</td>
+                            <td>{{ $pegawai->username }}</td>
+                            <td class="text-center">
+                                <a href="/pegawai/{{ $pegawai->id }}/edit"
+                                    ><i class="bx bx-edit-alt me-1" title="Edit"></i
+                                    ></a>
+                                    <form action="/pegawai/{{ $pegawai->id }}" method="POST" class="d-inline">
+                                      @method('delete')
+                                    @csrf
+                                      <button class="bx bx-trash me-1 text-danger border-0 " title="Hapus" onclick="return confirm('Are you sure ?')"></button>
+                                    </form>
+                            </td>
+                        <tr>
                        @endforeach
                       </tbody>
                   </table>

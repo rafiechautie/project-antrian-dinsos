@@ -5,6 +5,8 @@ namespace App\Http\Controllers\backsite;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class PegawaiController extends Controller
 {
@@ -25,7 +27,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.backsite.pegawai.create');
     }
 
     /**
@@ -33,23 +35,51 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate(
+            [
+                "nama_lengkap" => "required|max:255",
+                "username" => "required|unique:users|max:255",
+                "password" => "required|min:6|max:255",
+                "level" => "required",
+                "foto_profil" => "image|file|max:1024",
+            ]
+        );
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        if ($request->file('foto_profil')) {
+            //simpan gambarnya 
+            $validatedData['foto_profil'] = $request->file('foto_profil')->store('user-images');
+        }
+
+        User::create($validatedData);
+
+        return redirect('/pegawai')->with('success', 'New user has been added!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
-        //
+        $pegawai = User::find($id);
+
+        return view('pages.backsite.pegawai.edit', [
+            "pegawai" => $pegawai,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
-        //
+        $pegawai = User::find($id);
+
+        return view('pages.backsite.pegawai.edit', [
+            "pegawai" => $pegawai,
+        ]);
     }
 
     /**
@@ -57,14 +87,60 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($id);
+
+        $pegawai = User::find($id);
+        if (!$pegawai) {
+            return redirect()->route('/pegawai')->with('error', 'Data pegawai tidak ditemukan.');
+        }
+
+        $validatedData = $request->validate(
+            [
+                "nama_lengkap" => "required|max:255",
+                // "username" => "required|unique:users|max:255",
+                "password" => "required|min:6|max:255",
+                "level" => "required",
+                "foto_profil" => "image|file|max:1024",
+            ]
+        );
+
+        if ($request->username != $pegawai->username) {
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+
+        if ($request->file('foto_profil')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['foto_profil'] = $request->file('foto_profil')->store('user-images');
+        }
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        $pegawai->update($validatedData);
+
+        return redirect('/pegawai')->with('success', 'Pegawai has been updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $pegawai = User::find($id);
+
+        if (!$pegawai) {
+            return redirect()->route('/pegawai')->with('error', 'Data pegawai tidak ditemukan.');
+        }
+
+        if ($pegawai->foto_profil) {
+            Storage::delete($pegawai->foto_profil);
+        }
+
+        //kode untuk menghapus data post berdasarkan id
+        $pegawai->delete();
+
+        return redirect('/pegawai')->with('success', 'User has been deleted!');
     }
 }
