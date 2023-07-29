@@ -63,11 +63,6 @@ class PegawaiController extends Controller
      */
     public function show(Request $request, string $id)
     {
-        $pegawai = User::find($id);
-
-        return view('pages.backsite.pegawai.edit', [
-            "pegawai" => $pegawai,
-        ]);
     }
 
     /**
@@ -105,7 +100,7 @@ class PegawaiController extends Controller
         );
 
         if ($request->username != $pegawai->username) {
-            $rules['slug'] = 'required|unique:posts';
+            $rules['username'] = 'required|unique:users|max:255';
         }
 
 

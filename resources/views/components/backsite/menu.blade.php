@@ -63,7 +63,7 @@
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
       <li class="menu-item active">
-        <a href="index.html" class="menu-link">
+        <a href="/dashboard" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
         </a>
@@ -73,7 +73,7 @@
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Pages</span></li>
       <!-- Data Tamu -->
        <li class="menu-item">
-        <a href="/admin/appointment" class="menu-link">
+        <a href="/appointment" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Data Tamu</div>
         </a>

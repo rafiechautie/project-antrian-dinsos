@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backsite\BidangController;
 use App\Http\Controllers\backsite\PegawaiController;
 use App\Http\Controllers\frontsite\AppointmentController;
 use App\Http\Controllers\LoginController;
@@ -46,4 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::resource('/pegawai', PegawaiController::class)->except('show');
+
+    Route::resource('/bidang', BidangController::class)->except('show');
+
+    Route::resource('/appointment', PegawaiController::class)->except('show');
 });
