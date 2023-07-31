@@ -10,7 +10,7 @@
       <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Data Bidang/</span> Kelola Bidang</h4>
 
       <!-- Examples -->
-                    <!-- Responsive Table -->
+          <!-- Responsive Table -->
       <div class="container-fluid">
           <div class="panel panel">
 
@@ -67,7 +67,7 @@
   <!-- Content wrapper -->
 </div>
 <!-- / Layout page -->
-</div>
+
 
 <!-- Overlay -->
 <div class="layout-overlay layout-menu-toggle"></div>

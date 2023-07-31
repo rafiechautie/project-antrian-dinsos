@@ -9,7 +9,13 @@ class Appointment extends Model
 {
     use HasFactory;
 
+
     protected $guarded = ['id'];
+
+    public function timeAppointment()
+    {
+        return $this->belongsTo(TimeAppointment::class, "id_waktu");
+    }
 
     //satu appointment hanya punya satu divisi
     public function division()
