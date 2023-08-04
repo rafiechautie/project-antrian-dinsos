@@ -55,7 +55,12 @@ class AppointmentController extends Controller
     {
         $division = Division::find($id);
 
-        $time = TimeAppointment::where('division_id', $id)->get();
+        //ambil semua jam yang tersedia di database
+        $time = TimeAppointment::where('division_id', $id)
+                                ->where('is_available', true)
+                                ->get();
+        
+
         // dd($time);
 
         return view('pages.frontsite.appointment.store', [
@@ -66,12 +71,11 @@ class AppointmentController extends Controller
 
     public function store(Request $request, $id)
     {
-        // dd($request->nama_tamu);
-        // dd($id);
 
         $division = Division::find($id);
 
         $time = TimeAppointment::find($request->id_waktu);
+        // dd($time->id);
         // dd($time->waktu_mulai);
 
         $validatedData = $request->validate([
@@ -87,13 +91,15 @@ class AppointmentController extends Controller
             'no_surat_tugas'  => 'nullable|integer',
             'file_surat_tugas'  => 'nullable|mimes:pdf|max:2048',
         ]);
-        // dd($id);
 
         if ($request->file('file_surat_tugas')) {
             $validatedData['file_surat_tugas'] = $request->file('file_surat_tugas')->store('surat-tugas-tamu');
         }
 
         $validatedData['division_id'] = $id;
+
+        $time->is_available = false;
+        $time->save();
 
         Appointment::create($validatedData);
 

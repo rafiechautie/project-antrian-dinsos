@@ -117,7 +117,6 @@
 
                         <div class="input-field">
                             <label for="file_surat_tugas">Upload File Surat Tugas</label>
-                            <div id="pdf-preview"></div>
                             <input type="file" class="form-control @error('file_surat_tugas') is-invalid @enderror" id="file_surat_tugas" name="file_surat_tugas" value="{{ old('file_surat_tugas') }}" onchange="previewPDF(this)">
                             @error('file_surat_tugas')
                             <div class="invalid-feedback"> {{ $message }}</div>
@@ -169,24 +168,6 @@
   </div>
 </div>
 
-<script>
-    function previewPDF(input) {
-        const file = input.files[0];
-        const reader = new FileReader();
-        
-        reader.onloadend = function () {
-            const pdfPreview = document.getElementById('pdf-preview');
-            pdfPreview.innerHTML = `<iframe src="${reader.result}" width="100%" height="500px"></iframe>`;
-        }
-        
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            const pdfPreview = document.getElementById('pdf-preview');
-            pdfPreview.innerHTML = '';
-        }
-    }
-  </script>
 
 
 @push('after-script')

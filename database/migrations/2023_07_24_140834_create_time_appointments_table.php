@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('division_id');
             $table->string('waktu_mulai');
             $table->string('waktu_akhir');
+            $table->boolean('is_available')->default(true);
             $table->timestamps();
         });
     }

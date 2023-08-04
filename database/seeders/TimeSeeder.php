@@ -29,6 +29,13 @@ class TimeSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
             [
+                'division_id' => 1,
+                'waktu_mulai' => '11:00',
+                'waktu_akhir' => '12:00',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
                 'division_id' => 2,
                 'waktu_mulai' => '13:00',
                 'waktu_akhir' => '14:00',

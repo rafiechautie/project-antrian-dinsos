@@ -19,26 +19,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::group(['middleware' => 'guest'], function () {
-Route::get('/', function () {
-    return view('pages.frontsite.landing-page.index');
-});
+    Route::get('/', function () {
+        return view('pages.frontsite.landing-page.index');
+    });
 
-Route::get('/form-tamu', [AppointmentController::class, 'index']);
+    Route::get('/form-tamu', [AppointmentController::class, 'index']);
 
-Route::get('/form-tamu/{id}', [AppointmentController::class, 'create']);
+    Route::get('/form-tamu/{id}', [AppointmentController::class, 'create']);
 
-Route::post('/form-tamu/{id}', [AppointmentController::class, 'store']);
+    Route::post('/form-tamu/{id}', [AppointmentController::class, 'store']);
 
-Route::get('/success', function () {
-    return view('pages.frontsite.appointment.success');
-});
+    Route::get('/success', function () {
+        return view('pages.frontsite.appointment.success');
+    });
 
-Route::get('/cetak-bukti', [AppointmentController::class, 'printPDF']);
+    Route::get('/cetak-bukti', [AppointmentController::class, 'printPDF']);
 
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::post('/login', [LoginController::class, 'authenticate']);
+    Route::post('/login', [LoginController::class, 'authenticate']);
 // });
 
 Route::group(['middleware' => 'auth'], function () {
