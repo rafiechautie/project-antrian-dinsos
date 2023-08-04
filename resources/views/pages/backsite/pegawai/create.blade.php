@@ -84,6 +84,14 @@
                     <option value="1"  {{ old('level') == 1 ? ' selected' : '' }}>Admin</option>
                   </select>
                 </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label" for="division_id">Bidang</label>
+                  <select id="division_id" name="division_id" class="select2 form-select">
+                    @foreach ($divisions as $division)
+                    <option value="{{ $division->id }}"  {{ old('division_id') == $division->id ? ' selected' : '' }}>{{ $division->nama_bidang }}</option>
+                    @endforeach
+                  </select>
+                </div>
               </div>
               <div class="mt-2">
                 <button type="submit" class="btn btn-primary me-2">Tambah Pegawai</button>

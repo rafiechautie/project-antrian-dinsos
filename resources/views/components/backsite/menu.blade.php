@@ -62,7 +62,7 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
-      <li class="menu-item active">
+      <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
         <a href="/dashboard" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
@@ -72,35 +72,29 @@
       <!-- Components -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Pages</span></li>
       <!-- Data Tamu -->
-       <li class="menu-item">
+       <li class="menu-item {{ Request::is('appointment') ? 'active' : '' }}">
         <a href="/appointment" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Data Tamu</div>
         </a>
       </li>
       <!-- Data Pegawai -->
-      <li class="menu-item">
+      <li class="menu-item {{ Request::is('pegawai') ? 'active' : '' }}">
         <a href="/pegawai" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Data Pegawai</div>
         </a>
       </li>
       <!-- Data User -->
-      <li class="menu-item">
+      <li class="menu-item {{ Request::is('bidang') ? 'active' : '' }}">
         <a href="/bidang" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Data Bidang</div>
         </a>
       </li>
       {{-- data bidang tiap karyawan --}}
-      <li class="menu-item">
-        <a href="data_user.html" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-collection"></i>
-          <div data-i18n="Basic">Data Bidang tiap karyawan</div>
-        </a>
-      </li>
       <!-- Laporan -->
-      <li class="menu-item">
+      <li class="menu-item {{ Request::is('laporan') ? 'active' : '' }}">
         <a href="/laporan" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Laporan</div>
@@ -110,7 +104,7 @@
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Pages</span>
       </li>
-      <li class="/admin/setting">
+      <li class="menu-item">
        <a href="settings.html" class="menu-link">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
           <div data-i18n="Account Settings">Account Settings</div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backsite;
 
 use App\Http\Controllers\Controller;
+use App\Models\Division;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,11 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('pages.backsite.pegawai.create');
+        $division = Division::all();
+
+        return view('pages.backsite.pegawai.create', [
+            "divisions" => $division
+        ]);
     }
 
     /**
@@ -42,6 +47,7 @@ class PegawaiController extends Controller
                 "username" => "required|unique:users|max:255",
                 "password" => "required|min:6|max:255",
                 "level" => "required",
+                "division_id" => "required",
                 "foto_profil" => "image|file|max:1024",
             ]
         );
@@ -74,6 +80,7 @@ class PegawaiController extends Controller
 
         return view('pages.backsite.pegawai.edit', [
             "pegawai" => $pegawai,
+            "divisions" => Division::all()
         ]);
     }
 
@@ -93,8 +100,8 @@ class PegawaiController extends Controller
             [
                 "nama_lengkap" => "required|max:255",
                 // "username" => "required|unique:users|max:255",
-                "password" => "required|min:6|max:255",
                 "level" => "required",
+                "division_id" => "required",
                 "foto_profil" => "image|file|max:1024",
             ]
         );
@@ -111,7 +118,9 @@ class PegawaiController extends Controller
             $validatedData['foto_profil'] = $request->file('foto_profil')->store('user-images');
         }
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        if ($request->password != $pegawai->password) {
+            $rules['password'] = 'required|min:6|max:255';
+        }
 
         $pegawai->update($validatedData);
 

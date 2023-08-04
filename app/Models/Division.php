@@ -22,4 +22,10 @@ class Division extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function user()
+    {
+        //satu user cuman punyo satu divisi
+        return $this->hasMany(User::class, 'division_id');
+    }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->boolean('level')->default(false);
+            $table->foreignId('division_id')->nullable();
             $table->string('foto_profil')->nullable();
             $table->rememberToken();
             $table->timestamps();
