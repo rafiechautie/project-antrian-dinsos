@@ -51,5 +51,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/bidang', BidangController::class)->except('show');
 
-    Route::resource('/appointment', BacksiteAppointmentController::class)->except('show');
+    Route::resource('/appointment', BacksiteAppointmentController::class)->except('create');
 });

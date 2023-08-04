@@ -47,8 +47,8 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::find($id);
 
-        return view('pages.backsite.appointment.edit', [
-            "appoint$appointment" => $appointment,
+        return view('pages.backsite.appointment.show', [
+            "appointment" => $appointment,
         ]);
     }
 
@@ -105,6 +105,14 @@ class AppointmentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $appointment = Appointment::find($id);
+        if ($appointment->file_surat_tugas) {
+            Storage::delete($appointment->file_surat_tugas);
+        }
+
+        Appointment::destroy($appointment->id);
+
+        return redirect('/appointment')->with('success', 'Appointment has been deleted!');
     }
 }

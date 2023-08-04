@@ -16,9 +16,8 @@
       <!-- Examples -->
           <!-- Responsive Table -->
       <div class="container-fluid">
-          <a class="btn btn-primary mb-4 text-white" href="/appointment/create">Tambah Data Tamu</a>
         <div class="card">
-            <h5 class="card-header">Responsive Table</h5>
+            <h5 class="card-header">Table Appointment</h5>
             @if (session()->has('success'))
             <div class="alert alert-success col-lg-12" role="alert">
               {{ session('success') }}
@@ -49,7 +48,7 @@
                     <td>{{ $appointment->jumlah_tamu }}</td>
                     <td>{{ $appointment->division->nama_bidang }}</td>
                     <td>
-                        <a href="/appointment/{{ $appointment->id }}/edit"
+                        <a href="/appointment/{{ $appointment->id }}"
                             ><i class="bx bx-show-alt me-1" title="Edit"></i
                         ></a>
                         <a href="/appointment/{{ $appointment->id }}/edit"

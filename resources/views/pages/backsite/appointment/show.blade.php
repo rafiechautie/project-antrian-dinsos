@@ -40,6 +40,7 @@
                     id="no_hp_tamu"
                     name="no_hp_tamu"
                     value="{{ old('no_hp_tamu', $appointment->no_hp_tamu) }}"
+                    disabled
                   />
                   @error('no_hp_tamu')
                     <div class="invalid-feedback"> {{ $message }}</div>
@@ -53,6 +54,7 @@
                     id="jumlah_tamu"
                     name="jumlah_tamu"
                     value="{{ old('jumlah_tamu', $appointment->jumlah_tamu) }}"
+                    disabled
                   />
                   @error('jumlah_tamu')
                     <div class="invalid-feedback"> {{ $message }}</div>
@@ -87,6 +89,7 @@
                   id="detail_asal"
                   class="form-control @error('detail_asal') is-invalid @enderror"
                    rows="5"
+                   disabled
                 >{{ old('detail_asal', $appointment->detail_asal) }}</textarea>
                   @error('detail_asal')
                     <div class="invalid-feedback"> {{ $message }}</div>
@@ -100,6 +103,7 @@
                     id="keperluan"
                     name="keperluan"
                     value="{{ old('keperluan', $appointment->keperluan) }}"
+                    disabled
                   />
                   @error('keperluan')
                     <div class="invalid-feedback"> {{ $message }}</div>
@@ -150,7 +154,7 @@
                       id="plat_mobil"
                       name="plat_mobil"
                       value="{{ old('plat_mobil', $appointment->plat_mobil) }}"
-                      
+                      disabled
                     />
                     @error('plat_mobil')
                       <div class="invalid-feedback"> {{ $message }}</div>
@@ -164,7 +168,7 @@
                       id="no_surat_tugas"
                       name="no_surat_tugas"
                       value="{{ old('no_surat_tugas', $appointment->no_surat_tugas) }}"
-                      
+                      disabled
                     />
                     @error('no_surat_tugas')
                       <div class="invalid-feedback"> {{ $message }}</div>
@@ -185,6 +189,7 @@
                       id="file_surat_tugas"
                       name="file_surat_tugas"
                       onchange="previewPDF(this)"
+                      disabled
                     />
                     @error('file_surat_tugas')
                       <div class="invalid-feedback"> {{ $message }}</div>
@@ -192,8 +197,7 @@
                   </div>
               </div>
               <div class="mt-2">
-                <button type="submit" class="btn btn-primary me-2">Tambah Bidang</button>
-                <button type="reset" class="btn btn-outline-secondary">Batal</button>
+                <a class="btn btn-primary me-2" href="/appointment">Kembali</a>
               </div>
             </form>
           </div>
