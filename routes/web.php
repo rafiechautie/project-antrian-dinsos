@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backsite\AppointmentController as BacksiteAppointmentController;
 use App\Http\Controllers\Backsite\BidangController;
+use App\Http\Controllers\backsite\LaporanController;
 use App\Http\Controllers\backsite\PegawaiController;
 use App\Http\Controllers\frontsite\AppointmentController;
 use App\Http\Controllers\LoginController;
@@ -52,4 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/bidang', BidangController::class)->except('show');
 
     Route::resource('/appointment', BacksiteAppointmentController::class)->except('create');
+
+    Route::get('/laporan', [LaporanController::class, 'index']);
+
+    Route::post('/export-appointment', [LaporanController::class, 'exportByRangeDate']);
 });
