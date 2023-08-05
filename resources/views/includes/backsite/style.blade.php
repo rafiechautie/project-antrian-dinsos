@@ -23,5 +23,5 @@
 <link rel="stylesheet" href="{{ asset('/assets2/vendor/libs/apex-charts/apex-charts.css') }}" />
 
 
-
+<script src="{{ asset('/assets/js/chart.js') }}"></script>
 <!-- Page CSS -->

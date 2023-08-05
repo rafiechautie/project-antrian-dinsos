@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Division;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -16,6 +17,12 @@ class DashboardController extends Controller
         ->groupBy('division_id')
         ->get();
         // dd($appointments);
+
+        // Query untuk mengambil data total appointment per hari
+        $appointmentsPerDay = Appointment::selectRaw("DATE_FORMAT(tanggal, '%Y-%m-%d') as date, COUNT(*) as total")
+            ->groupBy('date')
+            ->get();
+
 
         // Buat array untuk menyimpan data total appointment dan informasi divisi
         $data = [];
@@ -40,7 +47,8 @@ class DashboardController extends Controller
         // dd($data['ruang']);
 
         return view('pages.backsite.dashboard.index', [
-            "divisions" => $data
+            "divisions" => $data,
+            "appointmentsPerDay" => $appointmentsPerDay
         ]);
     }
 }

@@ -31,7 +31,7 @@
       </div>
     </div>
     <!-- Total Revenue -->
-    <div class="col-lg-12 col-md-6 order-1 order-md-3 order-lg-2 mb-4">
+    {{-- <div class="col-lg-12 col-md-6 order-1 order-md-3 order-lg-2 mb-4">
       <div class="card">
         <div class="row row-bordered g-0">
           <div class="col-md-12">
@@ -41,7 +41,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
+    <canvas id="appointmentChart"></canvas>
     <!--/ Total Revenue -->
 
     <!--/Data Bidang-->
@@ -76,4 +77,43 @@
 </div>
 <!-- / Content -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Ambil data dari PHP
+  var appointmentsPerDay = @json($appointmentsPerDay);
+
+  // Siapkan array untuk label tanggal dan data total appointment
+  var dates = [];
+  var totals = [];
+
+  // Loop untuk mengisi data ke array
+  for (var i = 0; i < appointmentsPerDay.length; i++) {
+      dates.push(appointmentsPerDay[i].date);
+      totals.push(appointmentsPerDay[i].total);
+  }
+
+  // Buat grafik menggunakan Chart.js
+  var ctx = document.getElementById('appointmentChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: dates,
+          datasets: [{
+              label: 'Total Appointment per Day',
+              data: totals,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+</script>
 @endsection
