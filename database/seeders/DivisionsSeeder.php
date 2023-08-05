@@ -26,7 +26,43 @@ class DivisionsSeeder extends Seeder
                 'no_ruang' => '15',
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
-            ]
+            ],
+            [
+                'nama_bidang' => 'Ruang 1',
+                'no_ruang' => '11',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_bidang' => 'Ruang 2',
+                'no_ruang' => '1',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_bidang' => 'Ruang 3',
+                'no_ruang' => '3',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_bidang' => 'Ruang 5S',
+                'no_ruang' => '5',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_bidang' => 'Ruang 5',
+                'no_ruang' => '7',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_bidang' => 'Ruang 6S',
+                'no_ruang' => '10',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
         ];
 
         Division::insert($divisions);

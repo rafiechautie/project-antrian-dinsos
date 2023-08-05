@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backsite\AppointmentController as BacksiteAppointmentController;
 use App\Http\Controllers\Backsite\BidangController;
+use App\Http\Controllers\backsite\DashboardController;
 use App\Http\Controllers\backsite\LaporanController;
 use App\Http\Controllers\backsite\PegawaiController;
 use App\Http\Controllers\frontsite\AppointmentController;
@@ -44,9 +45,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/dashboard', function () {
-        return view('pages.backsite.dashboard.index');
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::resource('/pegawai', PegawaiController::class)->except('show');
 

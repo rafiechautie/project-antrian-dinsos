@@ -48,7 +48,42 @@ class TimeSeeder extends Seeder
                 'waktu_akhir' => '16:00',
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
-            ]
+            ],
+            [
+                'division_id' => 3,
+                'waktu_mulai' => '15:00',
+                'waktu_akhir' => '16:00',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'division_id' => 4,
+                'waktu_mulai' => '15:00',
+                'waktu_akhir' => '16:00',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'division_id' => 5,
+                'waktu_mulai' => '15:00',
+                'waktu_akhir' => '16:00',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'division_id' => 5,
+                'waktu_mulai' => '5:00',
+                'waktu_akhir' => '6:00',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'division_id' => 4,
+                'waktu_mulai' => '1:00',
+                'waktu_akhir' => '2:00',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
         ];
 
         TimeAppointment::insert($timeAppointment);

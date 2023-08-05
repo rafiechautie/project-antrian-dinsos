@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             DivisionsSeeder::class,
             UserSeeder::class,
             TimeSeeder::class,
+            AppointmentSeeder::class
         ]);
     }
 }
