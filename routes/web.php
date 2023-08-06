@@ -5,6 +5,7 @@ use App\Http\Controllers\Backsite\BidangController;
 use App\Http\Controllers\backsite\DashboardController;
 use App\Http\Controllers\backsite\LaporanController;
 use App\Http\Controllers\backsite\PegawaiController;
+use App\Http\Controllers\backsite\SettingController;
 use App\Http\Controllers\frontsite\AppointmentController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +42,11 @@ use Illuminate\Support\Facades\Route;
     Route::get('/login', [LoginController::class, 'index'])->name('login');
 
     Route::post('/login', [LoginController::class, 'authenticate']);
+
+    Route::post('logout', [LoginController::class, 'logout']);
 // });
+
+Route::resource('/pegawai', PegawaiController::class)->except('show')->middleware('admin');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -56,4 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/laporan', [LaporanController::class, 'index']);
 
     Route::post('/export-appointment', [LaporanController::class, 'exportByRangeDate']);
+
+    Route::get('/settings', [SettingController::class, 'index']);
+
+    Route::put('/settings/{id}', [SettingController::class, 'updateProfile']);
 });

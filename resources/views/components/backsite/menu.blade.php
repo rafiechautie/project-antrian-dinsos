@@ -104,8 +104,8 @@
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Pages</span>
       </li>
-      <li class="menu-item">
-       <a href="settings.html" class="menu-link">
+      <li class="menu-item {{ Request::is('settings') ? 'active' : '' }}">
+       <a href="/settings" class="menu-link">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
           <div data-i18n="Account Settings">Account Settings</div>
         </a>
@@ -117,9 +117,10 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="/admin/logout" class="menu-link">
-              <div data-i18n="Basic">Log Out</div>
-            </a>
+            <form action="/logout" method="POST">
+              @csrf
+              <button type="submit" class="menu-link border-0 bg-white" ><div data-i18n="Basic">Log Out</div></button>
+            </form>
           </li>
         </ul>
       </li>
