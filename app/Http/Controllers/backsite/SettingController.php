@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
@@ -29,6 +30,8 @@ class SettingController extends Controller
             [
                 "nama_lengkap" => "required|max:255",
                 "foto_profil" => "image|file|max:1024",
+                'oldPassword' => 'required|min:6|max:255',
+                'newPassword' => 'required|min:6|max:255',
             ]
         );
 
@@ -44,9 +47,14 @@ class SettingController extends Controller
             $validatedData['foto_profil'] = $request->file('foto_profil')->store('user-images');
         }
 
-        if ($request->password != auth()->user()->password) {
-            $rules['password'] = 'required|min:6|max:255';
+        if (Hash::check($request->input('newPassword'), $pegawai->password)) {
+            // Jika password lama sesuai, maka lakukan update password baru
+            $pegawai->password = Hash::make($request->input('newPassword'));
+        } else {
+            // Jika password lama tidak sesuai, tampilkan pesan error
+            return back()->with('loginError', 'Incorrect current password.');
         }
+
 
         $pegawai->update($validatedData);
 

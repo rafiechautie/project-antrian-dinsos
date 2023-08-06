@@ -26,33 +26,15 @@
                         </div>
                         <div class="flex-grow-1">
                             <span class="fw-semibold d-block">{{ auth()->user()->nama_lengkap }}</span>
-                            <small class="text-muted">Admin</small>
+                            <small class="text-muted">
+                                @if (auth()->user()->level)
+                                    Admin
+                                @else
+                                    Karyawan {{ auth()->user()->division->nama_bidang }}
+                                @endif
+                            </small>
                         </div>
                     </div>
-                </a>
-            </li>
-            <li>
-                <div class="dropdown-divider"></div>
-            </li>
-            <li>
-                <a class="dropdown-item" href="#">
-                    <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="settings.html">
-                    <i class="bx bx-cog me-2"></i>
-                    <span class="align-middle">Settings</span>
-                </a>
-            </li>
-            <li>
-                <div class="dropdown-divider"></div>
-            </li>
-            <li>
-                <a class="dropdown-item" href="login.html">
-                <i class="bx bx-power-off me-2"></i>
-                <span class="align-middle">Log Out</span>
                 </a>
             </li>
         </ul>

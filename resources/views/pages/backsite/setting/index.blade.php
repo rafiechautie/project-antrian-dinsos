@@ -24,6 +24,12 @@
               {{ session('success') }}
             </div>
             @endif
+            @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('loginError') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif   
             <!-- Account -->
             <hr class="my-0" />
             <div class="card-body">
@@ -86,9 +92,16 @@
                     @enderror
                   </div>
                   <div class="mb-3 col-md-6">
-                    <label for="password" class="form-label">Password</label>
-                    <input class="form-control @error('nama_lengkap') is-invalid @enderror" type="password" id="password" name="password" />
-                    @error('password')
+                    <label for="password" class="form-label">Password Lama</label>
+                    <input class="form-control @error('oldPassword') is-invalid @enderror" type="password" id="oldPassword" name="oldPassword" />
+                    @error('oldPassword')
+                    <div class="invalid-feedback"> {{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="mb-3 col-md-6">
+                    <label for="password" class="form-label">Password Baru</label>
+                    <input class="form-control @error('newPassword') is-invalid @enderror" type="password" id="newPassword" name="newPassword" />
+                    @error('newPassword')
                     <div class="invalid-feedback"> {{ $message }}</div>
                     @enderror
                   </div>

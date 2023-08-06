@@ -79,6 +79,7 @@
         </a>
       </li>
       <!-- Data Pegawai -->
+      @can('admin')
       <li class="menu-item {{ Request::is('pegawai') ? 'active' : '' }}">
         <a href="/pegawai" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
@@ -92,14 +93,24 @@
           <div data-i18n="Basic">Data Bidang</div>
         </a>
       </li>
+      @endcan
+      
+      <li class="menu-item {{ Request::is('kelola-waktu') ? 'active' : '' }}">
+        <a href="/kelola-waktu" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-collection"></i>
+          <div data-i18n="Basic">Kelola Waktu</div>
+        </a>
+      </li>
       {{-- data bidang tiap karyawan --}}
       <!-- Laporan -->
+      @can('admin')
       <li class="menu-item {{ Request::is('laporan') ? 'active' : '' }}">
         <a href="/laporan" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Laporan</div>
         </a>
-      </li>
+      </li> 
+      @endcan   
       <!-- Layouts -->
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Pages</span>

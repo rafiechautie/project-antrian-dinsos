@@ -16,6 +16,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin');
+
         $pegawai = User::all();
 
         return view('pages.backsite.pegawai.index', [
