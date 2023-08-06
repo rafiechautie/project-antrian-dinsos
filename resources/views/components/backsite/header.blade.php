@@ -37,6 +37,15 @@
                     </div>
                 </a>
             </li>
+            <li>
+                <div class="dropdown-divider"></div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/">
+                  <i class="bx bx-user me-2"></i>
+                  <span class="align-middle">Website Antrian</span>
+                </a>
+              </li>
         </ul>
         </li>
                 <!--/ User -->

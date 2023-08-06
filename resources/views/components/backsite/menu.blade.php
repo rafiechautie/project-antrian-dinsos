@@ -94,13 +94,15 @@
         </a>
       </li>
       @endcan
-      
+      @cannot('admin')
       <li class="menu-item {{ Request::is('kelola-waktu') ? 'active' : '' }}">
         <a href="/kelola-waktu" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
           <div data-i18n="Basic">Kelola Waktu</div>
         </a>
-      </li>
+      </li> 
+      @endcannot
+      
       {{-- data bidang tiap karyawan --}}
       <!-- Laporan -->
       @can('admin')

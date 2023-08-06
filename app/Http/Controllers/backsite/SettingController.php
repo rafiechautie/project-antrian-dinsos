@@ -30,8 +30,8 @@ class SettingController extends Controller
             [
                 "nama_lengkap" => "required|max:255",
                 "foto_profil" => "image|file|max:1024",
-                'oldPassword' => 'required|min:6|max:255',
-                'newPassword' => 'required|min:6|max:255',
+                // 'oldPassword' => 'required|min:6|max:255',
+                // 'newPassword' => 'required|min:6|max:255',
             ]
         );
 
@@ -47,13 +47,17 @@ class SettingController extends Controller
             $validatedData['foto_profil'] = $request->file('foto_profil')->store('user-images');
         }
 
-        if (Hash::check($request->input('newPassword'), $pegawai->password)) {
-            // Jika password lama sesuai, maka lakukan update password baru
-            $pegawai->password = Hash::make($request->input('newPassword'));
-        } else {
-            // Jika password lama tidak sesuai, tampilkan pesan error
-            return back()->with('loginError', 'Incorrect current password.');
+        if($request->filled('newPassword')){
+            if (Hash::check($request->input('oldPassword'), $pegawai->password)) {
+                // Jika password lama sesuai, maka lakukan update password baru
+                $pegawai->password = Hash::make($request->input('newPassword'));
+            } else {
+                // Jika password lama tidak sesuai, tampilkan pesan error
+    
+                return back()->with('loginError', 'Incorrect current password.');
+            }
         }
+       
 
 
         $pegawai->update($validatedData);

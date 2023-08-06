@@ -15,7 +15,11 @@
             <li class="scroll-to-section"><a href="#about">About</a></li>
             <li class="scroll-to-section"><a href="/form-tamu" class="{{ Request::is('form-tamu*') ? 'active' : '' }}">Form Tamu</a></li>
             <li class="scroll-to-section"><a href="#contact">Contact</a></li> 
+            @auth
+            <li class="scroll-to-section"><div class="border-first-button"><a href="/dashboard">My Dahboard</a></div></li>
+            @else
             <li class="scroll-to-section"><div class="border-first-button"><a href="/login">Login</a></div></li> 
+            @endauth
           </ul>        
           <a class='menu-trigger'>
               <span>Menu</span>

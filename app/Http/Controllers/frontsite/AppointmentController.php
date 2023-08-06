@@ -170,6 +170,8 @@ class AppointmentController extends Controller
                 <li style="font-style: bold; ">Tanggal Bertemu: ' . session('tanggal') . '</li>
                 <li style="font-style: bold; ">Waktu Bidang : ' . session('waktu_mulai') . '-' .  session('waktu_akhir') . '</li>
             </ul>
+            <br>
+            <h3 style="text-align: center;">Harap datang 15 menit lebih awal ke Dinkes</h3>
             ';
 
 

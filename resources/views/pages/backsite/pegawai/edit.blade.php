@@ -12,7 +12,12 @@
       <div class="col-md-12">
         <div class="card mb-4">
           <h5 class="card-header">Masukkan Data Pegawai</h5>
-
+          @if (session()->has('loginError'))
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ session('loginError') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          @endif   
           <hr class="my-0" />
           <div class="card-body">
             <form id="formAccountSettings" method="POST" action="/pegawai/{{ $pegawai->id }}" enctype="multipart/form-data">
@@ -77,9 +82,9 @@
                     @enderror
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="password" class="form-label">Password</label>
-                  <input class="form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" placeholder="California" value="{{ old('password', $pegawai->password) }}" />
-                  @error('password')
+                  <label for="newPassword" class="form-label">Password</label>
+                  <input class="form-control @error('newPassword') is-invalid @enderror" type="password" id="newPassword" name="newPassword" placeholder="California" />
+                  @error('newPassword')
                     <div class="invalid-feedback"> {{ $message }}</div>
                     @enderror
                 </div>

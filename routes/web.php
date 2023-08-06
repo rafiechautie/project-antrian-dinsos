@@ -48,6 +48,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::resource('/pegawai', PegawaiController::class)->except('show')->middleware('admin');
+Route::resource('/bidang', BidangController::class)->except('show')->middleware('admin');
+Route::get('/laporan', [LaporanController::class, 'index'])->middleware('admin');
+Route::post('/export-appointment', [LaporanController::class, 'exportByRangeDate'])->middleware('admin');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -55,15 +58,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/pegawai', PegawaiController::class)->except('show');
 
-    Route::resource('/bidang', BidangController::class)->except('show');
 
     Route::resource('/appointment', BacksiteAppointmentController::class)->except('create');
 
     Route::resource('/kelola-waktu', KelolaWaktuController::class);
-
-    Route::get('/laporan', [LaporanController::class, 'index']);
-
-    Route::post('/export-appointment', [LaporanController::class, 'exportByRangeDate']);
 
     Route::get('/settings', [SettingController::class, 'index']);
 

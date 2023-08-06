@@ -92,14 +92,14 @@
                     @enderror
                   </div>
                   <div class="mb-3 col-md-6">
-                    <label for="password" class="form-label">Password Lama</label>
+                    <label for="oldPassword" class="form-label">Password Lama</label>
                     <input class="form-control @error('oldPassword') is-invalid @enderror" type="password" id="oldPassword" name="oldPassword" />
                     @error('oldPassword')
                     <div class="invalid-feedback"> {{ $message }}</div>
                     @enderror
                   </div>
                   <div class="mb-3 col-md-6">
-                    <label for="password" class="form-label">Password Baru</label>
+                    <label for="newPassword" class="form-label">Password Baru</label>
                     <input class="form-control @error('newPassword') is-invalid @enderror" type="password" id="newPassword" name="newPassword" />
                     @error('newPassword')
                     <div class="invalid-feedback"> {{ $message }}</div>

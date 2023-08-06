@@ -13,6 +13,8 @@ class BidangController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin');
+
         $bidang = Division::all();
 
         // dd($bidang);

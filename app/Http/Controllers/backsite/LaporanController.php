@@ -12,6 +12,7 @@ class LaporanController extends Controller
 {
     public function index()
     {
+        $this->authorize('admin');
         return view('pages.backsite.laporan.index');
     }
 

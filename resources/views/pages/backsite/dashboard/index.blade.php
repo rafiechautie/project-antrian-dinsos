@@ -12,7 +12,7 @@
             <div class="card-body">
               <h5 class="card-title text-primary">Welcome {{ auth()->user()->nama_lengkap }}! 🎉</h5>
               <p class="mb-4">
-                Selamat Datang di Dashboard {{ auth()->user()->division->nama_bidang }} SIFASIANTAM Dinkes Sumsel
+                Selamat Datang di Dashboard {{ auth()->user()->division_id ? auth()->user()->division->nama_bidang  : 'Admin' }} SIFASIANTAM Dinkes Sumsel
               </p>         
             </div>
           </div>

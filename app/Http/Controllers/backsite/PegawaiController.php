@@ -98,20 +98,18 @@ class PegawaiController extends Controller
             return redirect()->route('/pegawai')->with('error', 'Data pegawai tidak ditemukan.');
         }
 
-        $validatedData = $request->validate(
+        $rules = 
             [
                 "nama_lengkap" => "required|max:255",
-                // "username" => "required|unique:users|max:255",
+                // 'newPassword' => 'min:6|max:255',
                 "level" => "required",
                 "division_id" => "required",
                 "foto_profil" => "image|file|max:1024",
-            ]
-        );
+            ];
 
         if ($request->username != $pegawai->username) {
             $rules['username'] = 'required|unique:users|max:255';
         }
-
 
         if ($request->file('foto_profil')) {
             if ($request->oldImage) {
@@ -120,10 +118,14 @@ class PegawaiController extends Controller
             $validatedData['foto_profil'] = $request->file('foto_profil')->store('user-images');
         }
 
-        if ($request->password != $pegawai->password) {
-            $rules['password'] = 'required|min:6|max:255';
+        if($request->filled('newPassword')){
+            $pegawai->password = Hash::make($request->input('newPassword'));
+         
         }
 
+        $validatedData = $request->validate($rules);
+
+        
         $pegawai->update($validatedData);
 
         return redirect('/pegawai')->with('success', 'Pegawai has been updated!');
